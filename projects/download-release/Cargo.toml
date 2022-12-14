@@ -1,5 +1,5 @@
 [package]
-name = "github-downloader"
+name = "download-release"
 version = "0.1.0"
 authors = ["Aster <192607617@qq.com>"]
 description = "Download files, folders, releases from github"
@@ -10,12 +10,12 @@ license = "MPL-2.0"
 edition = "2021"
 
 [dependencies]
-reqwest = "0.11.4"
-typify = "0.0.10"
+octocrab = "0.17.0"
+tokio = { version = "1.23.0", features = ["full"] }
 
 [dependencies.diagnostic-quick]
-version = "0.3.4"
-featires = ["semver", "url"]
+version = "0.3.5"
+features = []
 
 [dev-dependencies]
 
