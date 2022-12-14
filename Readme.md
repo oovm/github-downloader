@@ -1,4 +1,4 @@
-Rust Template Project
+Github downloader
 =====================
 
 Rust template project for monorepo
