@@ -1,10 +1,5 @@
-use diagnostic_quick::error_3rd::RequestClient;
-use diagnostic_quick::error_3rd::Url;
 use diagnostic_quick::QResult;
 use octocrab::Octocrab;
-
-use reqwest::header::USER_AGENT;
-use serde::Deserialize;
 
 #[derive(Debug, Clone, Default)]
 pub struct GithubDownloader {
@@ -17,9 +12,6 @@ impl GithubDownloader {
     pub fn with_token(mut self, token: &str) -> Self {
         self.token = Some(token.to_string());
         self
-    }
-    pub fn get_host(&self) -> QResult<Url> {
-        Ok(url)
     }
 }
 
@@ -34,13 +26,8 @@ impl GithubDownloader {
         let page = client
             .repos(owner, repo)
             .releases()
-            .list()
-            // Optional Parameters
-            .per_page(100)
-            .page(0u32)
-            // Send the request
-            .send()
-            .await.unwrap();
+            .get_latest().await.unwrap();
+        page.name;
         for item in page.items {
             println!("{:#?}", item);
         }
